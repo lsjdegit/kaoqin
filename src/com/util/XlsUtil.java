@@ -100,7 +100,7 @@ public class XlsUtil {
                         WritableCell wc = sheet.getWritableCell(j,i);
                         if( wc.getType() == CellType.LABEL){
                             Label l = (Label)wc;
-                            if(isLate(l) ){
+                            if(isLate(l) || isEarly(l)  || isNight(l) || isWeekend(l) || isHoliday(l)){
                                 Label label = new Label(l.getColumn(),l.getRow(),l.getContents(),getWritableCellFormat());
                                 sheet.addCell(label);
                             }
@@ -141,9 +141,54 @@ public class XlsUtil {
         return cellFormat;
     }
 
+    /**
+     * 迟到
+     * @param label
+     * @return
+     */
     public boolean isLate(Label label){
+        IsLate isLate = new IsLate();
+        return isLate.judge(label);
+    }
 
-        return false;
+    /**
+     * 早退
+     * @param label
+     * @return
+     */
+    public boolean isEarly(Label label){
+        IsEarly isEarly = new IsEarly();
+        return isEarly.judge(label);
+    }
+
+    /**
+     * 晚班
+     * @param label
+     * @return
+     */
+    public boolean isNight(Label label){
+        IsNight isNight = new IsNight();
+        return isNight.judge(label);
+    }
+
+    /**
+     * 周末加班
+     * @param label
+     * @return
+     */
+    public boolean isWeekend(Label label){
+        IsWeekend isWeekend = new IsWeekend();
+        return isWeekend.judge(label);
+    }
+
+    /**
+     * 节假日
+     * @param label
+     * @return
+     */
+    public boolean isHoliday(Label label){
+        IsHoliday isHoliday = new IsHoliday();
+        return isHoliday.judge(label);
     }
 
 
