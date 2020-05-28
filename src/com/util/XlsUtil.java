@@ -17,7 +17,7 @@ public class XlsUtil {
         int endindex = file.getAbsolutePath().indexOf(".");
         String endname = file.getAbsolutePath().substring(endindex);
         System.out.println("endname = " + endname);
-        if((!".xls".equals(endname)) && (!".xlsx".equals(endname))){
+        if(!".xls".equals(endname)){
             return "noxls";
         }
         InputStream is = null;
