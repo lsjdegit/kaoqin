@@ -14,6 +14,11 @@ public class XlsUtil {
     private TimeParam timeParam = new TimeParam();
 
     public String isXls(File file){
+        if(file == null){
+            return "no";
+        }
+
+        //xls文件
         int endindex = file.getAbsolutePath().indexOf(".");
         String endname = file.getAbsolutePath().substring(endindex);
         System.out.println("endname = " + endname);
@@ -37,6 +42,7 @@ public class XlsUtil {
         if(sheet == null){
             return "nokq";
         }
+
         return "yes";
     }
 
@@ -104,14 +110,11 @@ public class XlsUtil {
             }
             wwb.write();
             wwb.close();
-        }
-        catch(IOException e){
+        } catch (WriteException e) {
             e.printStackTrace();
-        }
-        catch(WriteException e){
+        } catch (BiffException e) {
             e.printStackTrace();
-        }
-        catch(BiffException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

@@ -8,6 +8,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileNotFoundException;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -80,7 +81,9 @@ public class Jexample implements ActionListener {
             File file = new File(path);
             XlsUtil xlsUtil = new XlsUtil();
             String msg = xlsUtil.isXls(file);
-            if(msg == "noxls"){
+            if(msg == "no"){
+                JOptionPane.showMessageDialog(null, "文件被占用", "提示", 2);
+            }else if(msg == "noxls"){
                 JOptionPane.showMessageDialog(null, "请选择.xls文件", "提示", 2);
             }else if(msg == "nokq"){
                 JOptionPane.showMessageDialog(null, "文件缺少“考勤记录”页", "提示", 2);
