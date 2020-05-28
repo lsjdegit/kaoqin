@@ -1,5 +1,6 @@
 package com.util;
 
+import com.param.TimeParam;
 import jxl.CellType;
 import jxl.Sheet;
 import jxl.Workbook;
@@ -10,6 +11,9 @@ import jxl.write.Label;
 import java.io.*;
 
 public class XlsUtil {
+    private TimeParam timeParam = new TimeParam();
+
+
     // 去读Excel的方法readExcel，该方法的入口参数为一个File对象
     public void readExcel(File file) {
         try {

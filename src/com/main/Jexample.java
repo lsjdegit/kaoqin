@@ -74,14 +74,12 @@ public class Jexample implements ActionListener {
             // 弹出对话框可以改变里面的参数具体得靠大家自己去看，时间很短
             System.out.println("所选文件路径"+text2.getText());
             String path=text2.getText();
-            File file = new File("path");
             System.out.println(path);
             XlsUtil obj = new XlsUtil();
+            // 此处为我创建Excel路径
+            File file = new File(path);
             obj.readExcel(file);
             JOptionPane.showMessageDialog(null, "选择成功", "提示", 2);
         }
-    }
-    public static void main(String[] args) {
-        new Jexample();
     }
 }
