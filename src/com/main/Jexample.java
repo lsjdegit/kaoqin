@@ -51,7 +51,7 @@ public class Jexample implements ActionListener {
         con.add(button3);
         frame.setVisible(true);// 窗口可见
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);// 使能关闭窗口，结束程序
-        tabPane.add("面板", con);// 添加布局
+        tabPane.add("", con);// 添加布局
     }
     /**
      * 时间监听的方法
@@ -78,8 +78,16 @@ public class Jexample implements ActionListener {
             XlsUtil obj = new XlsUtil();
             // 此处为我创建Excel路径
             File file = new File(path);
-            obj.readExcel(file);
-            JOptionPane.showMessageDialog(null, "选择成功", "提示", 2);
+            XlsUtil xlsUtil = new XlsUtil();
+            String msg = xlsUtil.isXls(file);
+            if(msg == "noxls"){
+                JOptionPane.showMessageDialog(null, "请选择.xls文件", "提示", 2);
+            }else if(msg == "nokq"){
+                JOptionPane.showMessageDialog(null, "文件缺少“考勤记录”页", "提示", 2);
+            }else{
+                obj.update(file);
+                JOptionPane.showMessageDialog(null, "修改成功！", "提示", 2);
+            }
         }
     }
 }

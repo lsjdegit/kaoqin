@@ -13,8 +13,38 @@ import java.io.*;
 public class XlsUtil {
     private TimeParam timeParam = new TimeParam();
 
+    public String isXls(File file){
+        int endindex = file.getAbsolutePath().indexOf(".");
+        String endname = file.getAbsolutePath().substring(endindex);
+        System.out.println("endname = " + endname);
+        if((!".xls".equals(endname)) && (!".xlsx".equals(endname))){
+            return "noxls";
+        }
+        InputStream is = null;
+        Sheet sheet = null;
+        try {
+            is = new FileInputStream(file.getAbsolutePath());
+            // jxl提供的Workbook类
+            Workbook wb = Workbook.getWorkbook(is);
+            sheet = wb.getSheet("考勤记录");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (BiffException e) {
+            e.printStackTrace();
+        }
+        if(sheet == null){
+            return "nokq";
+        }
+        return "yes";
+    }
 
-    // 去读Excel的方法readExcel，该方法的入口参数为一个File对象
+
+    /**
+     * 遍历
+     * @param file
+     */
     public void readExcel(File file) {
         try {
             // 创建输入流，读取Excel
@@ -48,6 +78,10 @@ public class XlsUtil {
         }
     }
 
+    /**
+     * 修改
+     * @param file
+     */
     public void update(File file){
         try{
             Workbook rw = Workbook.getWorkbook(file);
