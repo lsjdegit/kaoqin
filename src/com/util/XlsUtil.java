@@ -181,7 +181,7 @@ public class XlsUtil {
      */
     public boolean isWeekend(Label label,StringBuffer date){
         IsWeekend isWeekend = new IsWeekend();
-        return isWeekend.judge(label,date);
+        return isWeekend.judge(label, date);
     }
 
     /**

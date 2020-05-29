@@ -63,9 +63,6 @@ public class IsEarly {
         if(fen<=-180){//加班
             return true;
         }
-        ChineseCalendarUtils ccu=new ChineseCalendarUtils();
-        label.getContents();
-        int ri=label.getColumn();
 
         return false;
     }
