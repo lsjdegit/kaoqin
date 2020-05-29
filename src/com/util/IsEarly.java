@@ -21,20 +21,15 @@ public class IsEarly {
         TimeParam tp=new TimeParam();
         String dahou= datime.substring(num-5,num);
         String zuihou= tp.getOffTime();
-        String liuhou= "12:00";
-
         Date dadate = null;
         Date zuidate =null;
-        String ssdate=datime.substring(num-5,num-3);
-
-
+//        String ssdate=datime.substring(num-5,num-3);
 //        label.getContents();
 //        int ri=   label.getColumn();
 //        String riqi= String.valueOf(ri);
 //        String year=date.substring(0,7);
-//
-        String y=date.substring(0,4);
-       String m=date.substring(5,7);
+//        String y=date.substring(0,4);
+//        String m=date.substring(5,7);
 //
 //        String zong=null;
 //        if(riqi.length()>1) {
