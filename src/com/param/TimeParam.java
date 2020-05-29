@@ -3,6 +3,7 @@ package com.param;
 public class TimeParam {
     private String onTime = "8:30";
     private String offTime = "17:30";
+    private String midTime = "12:00";
     private String nightTime="20:30";
 
     public String getOnTime() {
@@ -27,5 +28,13 @@ public class TimeParam {
 
     public void setNightTime(String nightTime) {
         this.nightTime = nightTime;
+    }
+
+    public String getMidTime() {
+        return midTime;
+    }
+
+    public void setMidTime(String midTime) {
+        this.midTime = midTime;
     }
 }

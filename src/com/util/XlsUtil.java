@@ -10,6 +10,9 @@ import jxl.write.*;
 import jxl.write.Label;
 import java.io.*;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 public class XlsUtil {
     private TimeParam timeParam = new TimeParam();
@@ -97,13 +100,25 @@ public class XlsUtil {
             WritableSheet sheet  = wwb.getSheet("考勤记录");
             //得到年月
             StringBuffer date = new StringBuffer(sheet.getCell(2, 2).getContents());
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat sdfy = new SimpleDateFormat("yyyy");
+            SimpleDateFormat sdfm = new SimpleDateFormat("MM");
+            String sbdate = date.substring(0,10);
+            Date d = null;
+            try {
+                d = sdf.parse(sbdate);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            List<ChinaDate> dateList = new DateUtil().getCurrentDateInfo(sdfy.format(d),sdfm.format(d));
+
             for (int i = 0; i < sheet.getRows(); i++) {
                 if(i>4 && i%2!=0){
                     for (int j = 0; j < sheet.getColumns(); j++) {
                         WritableCell wc = sheet.getWritableCell(j,i);
                         if( wc.getType() == CellType.LABEL){
                             Label l = (Label)wc;
-                            if(isLate(l) || isEarly(l,date)  || isNight(l) || isWeekend(l,date) || isHoliday(l,date)){
+                            if(isHoliday(l,date,dateList) || isWeekend(l,date,dateList) || isNight(l) || isLate(l)){
                                 Label label = new Label(l.getColumn(),l.getRow(),l.getContents(),getWritableCellFormat());
                                 sheet.addCell(label);
                             }
@@ -179,9 +194,15 @@ public class XlsUtil {
      * @param label
      * @return
      */
-    public boolean isWeekend(Label label,StringBuffer date){
+    public boolean isWeekend(Label label,StringBuffer date,List<ChinaDate> dateList){
         IsWeekend isWeekend = new IsWeekend();
-        return isWeekend.judge(label,date);
+        boolean falg = false;
+        try {
+            falg = isWeekend.judge(label,date,dateList);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return falg;
     }
 
     /**
@@ -189,11 +210,11 @@ public class XlsUtil {
      * @param label
      * @return
      */
-    public boolean isHoliday(Label label,StringBuffer date){
+    public boolean isHoliday(Label label,StringBuffer date,List<ChinaDate> dateList){
         IsHoliday isHoliday = new IsHoliday();
         boolean falg = false;
         try {
-            falg = isHoliday.judge(label,date);
+            falg = isHoliday.judge(label,date,dateList);
         } catch (ParseException e) {
             e.printStackTrace();
         }
