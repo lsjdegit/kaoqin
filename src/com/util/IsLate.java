@@ -23,6 +23,7 @@ public class IsLate {
             //将string转换为时间
             SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
             Date date = new Date();
+            Date nightdate = new Date();
             Date ondate = new Date();
             Date offdate = new Date();
             //获取上班下班规定时间
@@ -32,14 +33,20 @@ public class IsLate {
              //下班规定时间
              String offtime= timeParam.getOffTime();
             int intcompareto = 0;
+            int intcomparetotwo = 0;
             try {
                 date = sdf.parse(qian5);
+                nightdate=sdf.parse(hou5);
                 ondate = sdf.parse(ontime);
                 offdate = sdf.parse(offtime);
                 System.out.println("转换的早上打卡时间为:"+date);
+                intcomparetotwo=nightdate.compareTo(offdate);
+                System.out.println("转换为下午打卡时间为"+nightdate);
+                System.out.println("该判断是否早退"+intcomparetotwo);
+
 
                  intcompareto=date.compareTo(ondate);
-                System.out.println("该迟到了"+intcompareto);
+                System.out.println("该判断是否迟到"+intcompareto);
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -48,10 +55,69 @@ public class IsLate {
                 return true;
             }
             //迟到或者忘记早上打卡 显示颜色
-          else if(intcompareto>0){
+          else if(intcompareto>0||intcomparetotwo<0){
                 System.out.println("迟到、忘记早上打卡"+intcompareto);
                 return true;
+                //判断了该打卡早上第一次打卡在8：30之前 并且第二次打卡在17：30之后
+            }else if(intcompareto<0||intcomparetotwo>0){
+              return  false;
             }
+
+        }else if(label.getString().length()==15){
+
+
+
+        }else if(label.getString().length()==20){
+            String qian5= label.getString().substring(0,5);
+            String hou5= label.getString().substring(15,label.getString().length());
+            System.out.println("20前五个字符串为"+qian5);
+            System.out.println("20后五个字符串为"+hou5);
+            //将string转换为时间
+            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+            Date date = new Date();
+            Date nightdate = new Date();
+            Date ondate = new Date();
+            Date offdate = new Date();
+            //获取上班下班规定时间
+            TimeParam timeParam = new TimeParam();
+            //上班规定时间
+            String ontime= timeParam.getOnTime();
+            //下班规定时间
+            String offtime= timeParam.getOffTime();
+            int intcompareto = 0;
+            int intcomparetotwo = 0;
+            try {
+                date = sdf.parse(qian5);
+                nightdate=sdf.parse(hou5);
+                ondate = sdf.parse(ontime);
+                offdate = sdf.parse(offtime);
+                System.out.println("20转换的早上打卡时间为:"+date);
+                System.out.println("20转换为下午打卡时间为"+nightdate);
+                intcomparetotwo=nightdate.compareTo(offdate);
+
+                System.out.println("20该判断是否早退"+intcomparetotwo);
+
+
+                intcompareto=date.compareTo(ondate);
+                System.out.println("20该判断是否迟到"+intcompareto);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            //两次打卡一样显示颜色
+            if(qian5==hou5){
+                return true;
+            }
+            //迟到或者忘记早上打卡 显示颜色
+            else if(intcompareto>0||intcomparetotwo<0){
+                System.out.println("20迟到、忘记早上打卡显示颜色"+intcompareto);
+                return true;
+                //判断了该打卡早上第一次打卡在8：30之前 并且第二次打卡在17：30之后
+            }else{
+                return  false;
+            }
+
+
+
 
         }
 
