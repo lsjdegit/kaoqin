@@ -80,6 +80,10 @@ public class DateUtil {
     }
 
     public List<ChinaDate> getCurrentDateInfo(String year,String month){
+        Integer yearInt = Integer.parseInt(year);
+        Integer monthInt = Integer.parseInt(month);
+        year = yearInt.toString();
+        month = monthInt.toString();
         WebClient webClient = null;
         List<ChinaDate> dateList = null;
         try{
@@ -164,9 +168,17 @@ public class DateUtil {
     }
 
     public static void main(String[] args) throws FailingHttpStatusCodeException, MalformedURLException, IOException, InterruptedException, ParseException {
-//        List<ChinaDate> dateList = new DateUtil().getCurrentDateInfo();
-//        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdfy = new SimpleDateFormat("yyyy");
+        SimpleDateFormat sdfm = new SimpleDateFormat("MM");
+        Date d = sdf.parse("2020-09-06");
+        List<ChinaDate> dateList = new DateUtil().getCurrentDateInfo(sdfy.format(d),sdfm.format(d));
+        ChinaDate cd = new DateUtil().getTodayInfo(dateList,d);
+        System.out.println("cd.isSaturday() = " + cd.isSunday());
+        System.out.println("本月详情：");
+        for(ChinaDate date: dateList){
+            System.out.println(sdf.format(date.getSolarDate()) + " " + date.isSunday());
+        }
     }
 
 
