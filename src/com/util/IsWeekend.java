@@ -34,7 +34,7 @@ public class IsWeekend {
         if(cd.isSaturday() || cd.isSunday()){
             if(!cd.isWorkFlag()){
                 if(cd.isSaturday()){
-                    if((endDate.getTime()-offtimeDate.getTime())>0){//星期六加班
+                    if((endDate.getTime()-offtimeDate.getTime())>=0){//星期六加班
                         return true;
                     }else if((endDate.getTime()-midtimeDate.getTime())<0){//星期六早退
                         return true;
