@@ -9,6 +9,7 @@ import jxl.read.biff.BiffException;
 import jxl.write.*;
 import jxl.write.Label;
 import java.io.*;
+import java.text.ParseException;
 
 public class XlsUtil {
     private TimeParam timeParam = new TimeParam();
@@ -94,13 +95,15 @@ public class XlsUtil {
             WritableWorkbook wwb = Workbook.createWorkbook(file,rw);
             //这里其实执行的是一次copy操作,把文件先读到内存中,修改后再保存覆盖原来的文件来实现update操作
             WritableSheet sheet  = wwb.getSheet("考勤记录");
+            //得到年月
+            StringBuffer date = new StringBuffer(sheet.getCell(2, 2).getContents());
             for (int i = 0; i < sheet.getRows(); i++) {
                 if(i>4 && i%2!=0){
                     for (int j = 0; j < sheet.getColumns(); j++) {
                         WritableCell wc = sheet.getWritableCell(j,i);
                         if( wc.getType() == CellType.LABEL){
                             Label l = (Label)wc;
-                            if(isLate(l) || isEarly(l)  || isNight(l) || isWeekend(l) || isHoliday(l)){
+                            if(isLate(l) || isEarly(l,date)  || isNight(l) || isWeekend(l,date) || isHoliday(l,date)){
                                 Label label = new Label(l.getColumn(),l.getRow(),l.getContents(),getWritableCellFormat());
                                 sheet.addCell(label);
                             }
@@ -156,9 +159,9 @@ public class XlsUtil {
      * @param label
      * @return
      */
-    public boolean isEarly(Label label){
+    public boolean isEarly(Label label,StringBuffer date){
         IsEarly isEarly = new IsEarly();
-        return isEarly.judge(label);
+        return isEarly.judge(label,date);
     }
 
     /**
@@ -176,9 +179,9 @@ public class XlsUtil {
      * @param label
      * @return
      */
-    public boolean isWeekend(Label label){
+    public boolean isWeekend(Label label,StringBuffer date){
         IsWeekend isWeekend = new IsWeekend();
-        return isWeekend.judge(label);
+        return isWeekend.judge(label,date);
     }
 
     /**
@@ -186,9 +189,15 @@ public class XlsUtil {
      * @param label
      * @return
      */
-    public boolean isHoliday(Label label){
+    public boolean isHoliday(Label label,StringBuffer date){
         IsHoliday isHoliday = new IsHoliday();
-        return isHoliday.judge(label);
+        boolean falg = false;
+        try {
+            falg = isHoliday.judge(label,date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return falg;
     }
 
 
