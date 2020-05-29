@@ -1,14 +1,13 @@
 package com.main;
 
 import com.util.XlsUtil;
-
 import java.awt.Container;
 import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -18,7 +17,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
 public class Jexample implements ActionListener {
-    JFrame frame = new JFrame("选择文件");// 框架布局
+    JFrame frame = new JFrame("考勤记录");// 框架布局
     JTabbedPane tabPane = new JTabbedPane();// 选项卡布局
     Container con = new Container();//
 
@@ -30,7 +29,7 @@ public class Jexample implements ActionListener {
     JButton button3 = new JButton("确定");//
 
     Jexample() {
-        jfc.setCurrentDirectory(new File("d://"));// 文件选择器的初始目录定为d盘
+        jfc.setCurrentDirectory(new File("c://"));// 文件选择器的初始目录定为c盘
 
         double lx = Toolkit.getDefaultToolkit().getScreenSize().getWidth();
 
@@ -52,7 +51,7 @@ public class Jexample implements ActionListener {
         con.add(button3);
         frame.setVisible(true);// 窗口可见
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);// 使能关闭窗口，结束程序
-        tabPane.add("", con);// 添加布局
+        tabPane.add("xls表格选择", con);// 添加布局
     }
     /**
      * 时间监听的方法
@@ -82,14 +81,20 @@ public class Jexample implements ActionListener {
             XlsUtil xlsUtil = new XlsUtil();
             String msg = xlsUtil.isXls(file);
             if(msg == "no"){
-                JOptionPane.showMessageDialog(null, "文件被占用", "提示", 2);
+                JOptionPane.showMessageDialog(null, "文件不存在！", "提示", 2);
+            }else if(msg == "use"){
+                JOptionPane.showMessageDialog(null, "文件被占用！", "提示", 2);
             }else if(msg == "noxls"){
-                JOptionPane.showMessageDialog(null, "请选择.xls文件", "提示", 2);
+                JOptionPane.showMessageDialog(null, "请选择.xls文件！", "提示", 2);
             }else if(msg == "nokq"){
-                JOptionPane.showMessageDialog(null, "文件缺少“考勤记录”页", "提示", 2);
+                JOptionPane.showMessageDialog(null, "文件缺少“考勤记录”页！", "提示", 2);
             }else{
-                obj.update(file);
-                JOptionPane.showMessageDialog(null, "修改成功！", "提示", 2);
+                try {
+                    obj.update(file);
+                    JOptionPane.showMessageDialog(null, "修改成功！", "提示", 2);
+                } catch (IOException e1) {
+                    JOptionPane.showMessageDialog(null, "拒绝访问！", "提示", 2);
+                }
             }
         }
     }

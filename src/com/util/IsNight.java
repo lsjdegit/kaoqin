@@ -2,7 +2,6 @@ package com.util;
 
 import com.param.TimeParam;
 import jxl.write.Label;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -30,7 +29,7 @@ public class IsNight {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            if (intcompareto > 0) {
+            if (intcompareto >= 0) {
                 return true;
             }
 
@@ -53,7 +52,7 @@ public class IsNight {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            if (intcompareto > 0) {
+            if (intcompareto >= 0) {
                 return true;
             }
 
@@ -76,7 +75,7 @@ public class IsNight {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            if (intcompareto > 0) {
+            if (intcompareto >= 0) {
                 return true;
             }
         } else if (label.getString().length() == 25) {
@@ -97,7 +96,7 @@ public class IsNight {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            if (intcompareto > 0) {
+            if (intcompareto >= 0) {
                 return true;
             }
         } else if (label.getString().length() == 30) {
@@ -118,7 +117,7 @@ public class IsNight {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            if (intcompareto > 0) {
+            if (intcompareto >= 0) {
                 return true;
             }
 
