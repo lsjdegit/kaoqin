@@ -79,7 +79,7 @@ public class DateUtil {
         return rst;
     }
 
-    public List<ChinaDate> getCurrentDateInfo(){
+    public List<ChinaDate> getCurrentDateInfo(String year,String month){
         WebClient webClient = null;
         List<ChinaDate> dateList = null;
         try{
@@ -87,7 +87,6 @@ public class DateUtil {
             dateList = new ArrayList<ChinaDate>();
             webClient = new WebClient();
             HtmlPage page = webClient.getPage("http://hao.360.cn/rili/");
-            System.out.println("webClient = " + webClient);
             //最大等待60秒
             for(int k = 0; k < 60; k++){
                 if(!page.getElementById("M-dates").asText().equals("")) break;
@@ -96,12 +95,24 @@ public class DateUtil {
             //睡了8秒，等待页面加载完成...，有时候，页面可能获取不到，不稳定（）
             //Thread.sleep(8000);
 
-            //选择指定月份
-            //获取搜索按钮并点击
+            //选择指定年份
             DomNodeList<HtmlElement> years =  page.getElementById("M-controls").getFirstElementChild().getFirstElementChild().getElementsByTagName("li");
-//            HtmlPage page2 = a.click();
-            for(HtmlElement year : years){
-                System.out.println("year.asText() = " + year.asText());
+            DomNodeList<HtmlElement> y =  page.getElementById("M-controls").getFirstElementChild().getFirstElementChild().getElementsByTagName("i");
+            y.get(0).click();
+            for(HtmlElement yea : years){
+                if(yea.getTextContent().equals(year+"年")){
+                    page = yea.click();
+                }
+            }
+            //选择指定月份
+            DomNodeList<HtmlElement> monthsElements =  page.getElementById("M-controls").getFirstElementChild().getElementsByTagName("div");
+            DomNodeList<HtmlElement> months = monthsElements.get(3).getElementsByTagName("li");
+            DomNodeList<HtmlElement> m =  page.getElementById("M-controls").getFirstElementChild().getFirstElementChild().getNextElementSibling().getElementsByTagName("i");
+            m.get(0).click();
+            for(HtmlElement mon : months){
+                if(mon.getTextContent().equals(month+"月")){
+                    page = mon.click();
+                }
             }
             DomNodeList<HtmlElement> htmlElements = page.getElementById("M-dates").getElementsByTagName("li");
             //System.out.println(htmlElements.size());
@@ -153,12 +164,8 @@ public class DateUtil {
     }
 
     public static void main(String[] args) throws FailingHttpStatusCodeException, MalformedURLException, IOException, InterruptedException, ParseException {
-        List<ChinaDate> dateList = new DateUtil().getCurrentDateInfo();
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-        System.out.println("本月详情：");
-        for(ChinaDate date: dateList){
-            System.out.println(dateFormat.format(date.getSolarDate()) + " " + date.getVacationName());
-        }
+//        List<ChinaDate> dateList = new DateUtil().getCurrentDateInfo();
+//        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 
     }
 
