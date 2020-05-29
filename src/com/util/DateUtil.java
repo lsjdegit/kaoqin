@@ -167,19 +167,19 @@ public class DateUtil {
         return new ChinaDate();
     }
 
-    public static void main(String[] args) throws FailingHttpStatusCodeException, MalformedURLException, IOException, InterruptedException, ParseException {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        SimpleDateFormat sdfy = new SimpleDateFormat("yyyy");
-        SimpleDateFormat sdfm = new SimpleDateFormat("MM");
-        Date d = sdf.parse("2020-09-06");
-        List<ChinaDate> dateList = new DateUtil().getCurrentDateInfo(sdfy.format(d),sdfm.format(d));
-        ChinaDate cd = new DateUtil().getTodayInfo(dateList,d);
-        System.out.println("cd.isSaturday() = " + cd.isSunday());
-        System.out.println("本月详情：");
-        for(ChinaDate date: dateList){
-            System.out.println(sdf.format(date.getSolarDate()) + " " + date.isSunday());
-        }
-    }
+//    public static void main(String[] args) throws FailingHttpStatusCodeException, MalformedURLException, IOException, InterruptedException, ParseException {
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//        SimpleDateFormat sdfy = new SimpleDateFormat("yyyy");
+//        SimpleDateFormat sdfm = new SimpleDateFormat("MM");
+//        Date d = sdf.parse("2020-09-06");
+//        List<ChinaDate> dateList = new DateUtil().getCurrentDateInfo(sdfy.format(d),sdfm.format(d));
+//        ChinaDate cd = new DateUtil().getTodayInfo(dateList,d);
+//        System.out.println("cd.isSaturday() = " + cd.isSunday());
+//        System.out.println("本月详情：");
+//        for(ChinaDate date: dateList){
+//            System.out.println(sdf.format(date.getSolarDate()) + " " + date.isSunday());
+//        }
+//    }
 
 
 }
