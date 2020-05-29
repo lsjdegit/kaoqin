@@ -99,9 +99,11 @@ public class DateUtil {
             //选择指定月份
             //获取搜索按钮并点击
             DomNodeList<HtmlElement> years =  page.getElementById("M-controls").getFirstElementChild().getFirstElementChild().getElementsByTagName("li");
-            HtmlPage page2 = a.click();
-
-            DomNodeList<HtmlElement> htmlElements = page2.getElementById("M-dates").getElementsByTagName("li");
+//            HtmlPage page2 = a.click();
+            for(HtmlElement year : years){
+                System.out.println("year.asText() = " + year.asText());
+            }
+            DomNodeList<HtmlElement> htmlElements = page.getElementById("M-dates").getElementsByTagName("li");
             //System.out.println(htmlElements.size());
             for(HtmlElement element : htmlElements){
                 ChinaDate chinaDate = new ChinaDate();

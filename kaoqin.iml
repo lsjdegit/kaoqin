@@ -31,7 +31,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://D:/谷歌浏览器下载/soft/htmlunit-2.40.0-bin/htmlunit-2.40.0/lib/commons-codec-1.11.jar!/" />
+          <root url="jar://$MODULE_DIR$/web/WEB-INF/bin/commons-codec-1.11.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -40,7 +40,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://D:/谷歌浏览器下载/soft/htmlunit-2.40.0-bin/htmlunit-2.40.0/lib/commons-io-2.6.jar!/" />
+          <root url="jar://$MODULE_DIR$/web/WEB-INF/bin/commons-io-2.6.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -49,7 +49,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://D:/谷歌浏览器下载/soft/htmlunit-2.40.0-bin/htmlunit-2.40.0/lib/commons-lang3-3.10.jar!/" />
+          <root url="jar://$MODULE_DIR$/web/WEB-INF/bin/commons-lang3-3.10.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -58,7 +58,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://D:/谷歌浏览器下载/soft/htmlunit-2.40.0-bin/htmlunit-2.40.0/lib/commons-logging-1.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/web/WEB-INF/bin/commons-logging-1.2.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -67,7 +67,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://D:/谷歌浏览器下载/soft/htmlunit-2.40.0-bin/htmlunit-2.40.0/lib/commons-net-3.6.jar!/" />
+          <root url="jar://$MODULE_DIR$/web/WEB-INF/bin/commons-net-3.6.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -76,7 +76,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://D:/谷歌浏览器下载/soft/htmlunit-2.40.0-bin/htmlunit-2.40.0/lib/commons-text-1.8.jar!/" />
+          <root url="jar://$MODULE_DIR$/web/WEB-INF/bin/commons-text-1.8.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -85,7 +85,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://D:/谷歌浏览器下载/soft/htmlunit-2.40.0-bin/htmlunit-2.40.0/lib/dec-0.1.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/web/WEB-INF/bin/dec-0.1.2.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -94,7 +94,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://D:/谷歌浏览器下载/soft/htmlunit-2.40.0-bin/htmlunit-2.40.0/lib/htmlunit-core-js-2.40.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/web/WEB-INF/bin/htmlunit-2.40.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -103,7 +103,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://D:/谷歌浏览器下载/soft/htmlunit-2.40.0-bin/htmlunit-2.40.0/lib/htmlunit-cssparser-1.5.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/web/WEB-INF/bin/htmlunit-core-js-2.40.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -112,7 +112,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://D:/谷歌浏览器下载/soft/htmlunit-2.40.0-bin/htmlunit-2.40.0/lib/httpcore-4.4.13.jar!/" />
+          <root url="jar://$MODULE_DIR$/web/WEB-INF/bin/htmlunit-cssparser-1.5.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -121,7 +121,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://D:/谷歌浏览器下载/soft/htmlunit-2.40.0-bin/htmlunit-2.40.0/lib/httpmime-4.5.12.jar!/" />
+          <root url="jar://$MODULE_DIR$/web/WEB-INF/bin/httpclient-4.5.12.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -130,7 +130,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://D:/谷歌浏览器下载/soft/htmlunit-2.40.0-bin/htmlunit-2.40.0/lib/jetty-client-9.4.28.v20200408.jar!/" />
+          <root url="jar://$MODULE_DIR$/web/WEB-INF/bin/httpcore-4.4.13.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -139,7 +139,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://D:/谷歌浏览器下载/soft/htmlunit-2.40.0-bin/htmlunit-2.40.0/lib/jetty-http-9.4.28.v20200408.jar!/" />
+          <root url="jar://$MODULE_DIR$/web/WEB-INF/bin/httpmime-4.5.12.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -148,7 +148,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://D:/谷歌浏览器下载/soft/htmlunit-2.40.0-bin/htmlunit-2.40.0/lib/jetty-io-9.4.28.v20200408.jar!/" />
+          <root url="jar://$MODULE_DIR$/web/WEB-INF/bin/jetty-client-9.4.28.v20200408.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -157,7 +157,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://D:/谷歌浏览器下载/soft/htmlunit-2.40.0-bin/htmlunit-2.40.0/lib/jetty-util-9.4.28.v20200408.jar!/" />
+          <root url="jar://$MODULE_DIR$/web/WEB-INF/bin/jetty-http-9.4.28.v20200408.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -166,7 +166,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://D:/谷歌浏览器下载/soft/htmlunit-2.40.0-bin/htmlunit-2.40.0/lib/jetty-xml-9.4.28.v20200408.jar!/" />
+          <root url="jar://$MODULE_DIR$/web/WEB-INF/bin/jetty-io-9.4.28.v20200408.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -175,7 +175,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://D:/谷歌浏览器下载/soft/htmlunit-2.40.0-bin/htmlunit-2.40.0/lib/neko-htmlunit-2.40.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/web/WEB-INF/bin/jetty-util-9.4.28.v20200408.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -184,7 +184,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://D:/谷歌浏览器下载/soft/htmlunit-2.40.0-bin/htmlunit-2.40.0/lib/salvation-2.7.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/web/WEB-INF/bin/jetty-xml-9.4.28.v20200408.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -193,7 +193,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://D:/谷歌浏览器下载/soft/htmlunit-2.40.0-bin/htmlunit-2.40.0/lib/serializer-2.7.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/web/WEB-INF/bin/neko-htmlunit-2.40.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -202,7 +202,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://D:/谷歌浏览器下载/soft/htmlunit-2.40.0-bin/htmlunit-2.40.0/lib/websocket-api-9.4.28.v20200408.jar!/" />
+          <root url="jar://$MODULE_DIR$/web/WEB-INF/bin/salvation-2.7.1.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -211,7 +211,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://D:/谷歌浏览器下载/soft/htmlunit-2.40.0-bin/htmlunit-2.40.0/lib/websocket-client-9.4.28.v20200408.jar!/" />
+          <root url="jar://$MODULE_DIR$/web/WEB-INF/bin/serializer-2.7.2.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -220,7 +220,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://D:/谷歌浏览器下载/soft/htmlunit-2.40.0-bin/htmlunit-2.40.0/lib/websocket-common-9.4.28.v20200408.jar!/" />
+          <root url="jar://$MODULE_DIR$/web/WEB-INF/bin/websocket-api-9.4.28.v20200408.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -229,7 +229,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://D:/谷歌浏览器下载/soft/htmlunit-2.40.0-bin/htmlunit-2.40.0/lib/xalan-2.7.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/web/WEB-INF/bin/websocket-client-9.4.28.v20200408.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -238,7 +238,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://D:/谷歌浏览器下载/soft/htmlunit-2.40.0-bin/htmlunit-2.40.0/lib/xercesImpl-2.12.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/web/WEB-INF/bin/websocket-common-9.4.28.v20200408.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -247,7 +247,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://D:/谷歌浏览器下载/soft/htmlunit-2.40.0-bin/htmlunit-2.40.0/lib/xml-apis-1.4.01.jar!/" />
+          <root url="jar://$MODULE_DIR$/web/WEB-INF/bin/xalan-2.7.2.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -256,7 +256,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://D:/谷歌浏览器下载/soft/htmlunit-2.40.0-bin/htmlunit-2.40.0/lib/httpclient-4.5.12.jar!/" />
+          <root url="jar://$MODULE_DIR$/web/WEB-INF/bin/xercesImpl-2.12.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -265,7 +265,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://D:/谷歌浏览器下载/soft/htmlunit-2.40.0-bin/htmlunit-2.40.0/lib/htmlunit-2.40.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/web/WEB-INF/bin/xml-apis-1.4.01.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
