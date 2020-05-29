@@ -60,6 +60,7 @@ public class IsLate {
                 System.out.println("该判断是否早退"+intcomparetotwo);
 
 
+
                  intcompareto=date.compareTo(ondate);
                 System.out.println("该判断是否迟到"+intcompareto);
             } catch (ParseException e) {
@@ -69,14 +70,18 @@ public class IsLate {
             //两次打卡一样显示颜色
             if(qian5==hou5){
                 return true;
-            }
+            }else if(((date.getTime()-nightdate.getTime()/6000)<=30)){
+                System.out.println("两次打卡相差不到三十分钟的");
+                return true;
+
+
             //迟到或者忘记早上打卡 显示颜色
-          else if(intcompareto>0){
+            }else if(intcompareto>0){
                 System.out.println("迟到、忘记早上打卡"+intcompareto);
                 return true;
                 //判断了该打卡早上第一次打卡在8：30之前 并且第二次打卡在17：30之后
             }else if(intcompareto<0||intcomparetotwo>0){
-              return  true;
+              return  false;
             }
 
 
