@@ -42,9 +42,8 @@ public class IsWeekend {
                         return true;
                     }else if((startDate.getTime()-ontimeDate.getTime())>0){//星期六迟到
                         return true;
-                    } else if ((endDate.getTime() - startDate.getTime() / 60000) <= 120) {
+                    } else if ((endDate.getTime() - startDate.getTime() / 60000) <= 120) {//前后两次打卡在两小时之间
                         return true;
-                        //迟到或者忘记早上打卡
                     }else{
                         return false;
                     }
@@ -58,9 +57,8 @@ public class IsWeekend {
                     return true;
                 }else if((startDate.getTime()-ontimeDate.getTime())>0){//迟到
                     return true;
-                } else if ((endDate.getTime() - startDate.getTime() / 60000) <= 120) {
+                } else if ((endDate.getTime() - startDate.getTime() / 60000) <= 120) {//前后两次打卡在两小时之间
                     return true;
-                    //迟到或者忘记早上打卡
                 }else{
                     return false;
                 }
@@ -72,9 +70,8 @@ public class IsWeekend {
                 return true;
             }else if((startDate.getTime()-ontimeDate.getTime())>0){//迟到
                 return true;
-            } else if ((endDate.getTime() - startDate.getTime() / 60000) <= 120) {
+            } else if ((endDate.getTime() - startDate.getTime() / 60000) <= 120) {//前后两次打卡在两小时之间
                 return true;
-                //迟到或者忘记早上打卡
             }else{
                 return false;
             }
