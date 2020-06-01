@@ -120,12 +120,24 @@ public class XlsUtil {
                 if(i>4 && i%2!=0){
                     for (int j = 0; j < sheet.getColumns(); j++) {
                         WritableCell wc = sheet.getWritableCell(j,i);
+                        if(wc.getContents() == ""){
+                            SimpleDateFormat sdf01 = new SimpleDateFormat("yyyy-MM-dd");
+                            StringBuffer sbym = new StringBuffer(date.substring(0,8));
+                            String day = (wc.getColumn()+1)>9?(wc.getColumn()+1)+"":"0"+(wc.getColumn()+1)+"";
+                            sbym.append(day);
+                            Date ymd = sdf01.parse(sbym.toString());
+                            ChinaDate cd = new DateUtil().getTodayInfo(dateList,ymd);
+                            if(!cd.isVacation() && !cd.isSunday()){
+                                Label label = new Label(wc.getColumn(),wc.getRow(),wc.getContents(),getWritableCellFormat());
+                                sheet.addCell(label);
+                            }else if(cd.isSunday() && cd.isWorkFlag()){
+                                Label label = new Label(wc.getColumn(),wc.getRow(),wc.getContents(),getWritableCellFormat());
+                                sheet.addCell(label);
+                            }
+                        }
                         if( wc.getType() == CellType.LABEL){
                             Label l = (Label)wc;
                             if(isHoliday(l,date,dateList) || isWeekend(l,date,dateList)){
-                                if(i == 183 && j ==23){
-                                    System.out.println(isLate(l));
-                                }
                                 Label label = new Label(l.getColumn(),l.getRow(),l.getContents(),getWritableCellFormat());
                                 sheet.addCell(label);
                             }
@@ -138,6 +150,8 @@ public class XlsUtil {
         } catch (WriteException e) {
             e.printStackTrace();
         } catch (BiffException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
             e.printStackTrace();
         }
     }
