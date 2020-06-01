@@ -54,7 +54,7 @@ public class IsLate {
             //两次打卡一样显示颜色
             if (qian5 == hou5) {
                 return true;
-            } else if (((nightdate.getTime() - date.getTime() / 36000) <= 120)) {
+            } else if (((nightdate.getTime() - date.getTime() / 60000) <= 120)) {
                 return true;
                 //迟到或者忘记早上打卡 显示颜色
             } else if (intcompareto > 0) {
@@ -93,7 +93,7 @@ public class IsLate {
             //两次打卡一样显示颜色
             if (qian5 == hou5) {
                 return true;
-            } else if (((nightdate.getTime() - date.getTime() / 36000) <= 120)) {
+            } else if (((nightdate.getTime() - date.getTime() / 60000) <= 120)) {
                 return true;
                 //迟到或者忘记早上打卡 显示颜色
             }
@@ -136,7 +136,7 @@ public class IsLate {
             //两次打卡一样显示颜色
             if (qian5 == hou5) {
                 return true;
-            } else if (((nightdate.getTime() - date.getTime() / 36000) <= 120)) {
+            } else if (((nightdate.getTime() - date.getTime() / 60000) <= 120)) {
                 return true;
                 //迟到或者忘记早上打卡 显示颜色
             }
@@ -179,7 +179,7 @@ public class IsLate {
             //两次打卡一样显示颜色
             if (qian5 == hou5) {
                 return true;
-            } else if (((nightdate.getTime() - date.getTime() / 36000) <= 120)) {
+            } else if (((nightdate.getTime() - date.getTime() / 60000) <= 120)) {
                 return true;
                 //迟到或者忘记早上打卡 显示颜色
             }
@@ -221,7 +221,7 @@ public class IsLate {
             //两次打卡一样显示颜色
             if (qian5 == hou5) {
                 return true;
-            } else if (((nightdate.getTime() - date.getTime() / 36000) <= 120)) {
+            } else if (((nightdate.getTime() - date.getTime() / 60000) <= 120)) {
                 return true;
                 //迟到或者忘记早上打卡 显示颜色
             }
