@@ -2,6 +2,7 @@ package com.util;
 
 import com.param.TimeParam;
 import jxl.write.Label;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -29,7 +30,7 @@ public class IsNight {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            if (intcompareto >= 0) {
+            if (intcompareto > 0) {
                 return true;
             }
 
@@ -52,7 +53,7 @@ public class IsNight {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            if (intcompareto >= 0) {
+            if (intcompareto > 0) {
                 return true;
             }
 
@@ -75,7 +76,7 @@ public class IsNight {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            if (intcompareto >= 0) {
+            if (intcompareto > 0) {
                 return true;
             }
         } else if (label.getString().length() == 25) {
@@ -96,7 +97,7 @@ public class IsNight {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            if (intcompareto >= 0) {
+            if (intcompareto > 0) {
                 return true;
             }
         } else if (label.getString().length() == 30) {
@@ -117,11 +118,56 @@ public class IsNight {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            if (intcompareto >= 0) {
+            if (intcompareto > 0) {
+                return true;
+            }
+
+        }else if (label.getString().length() == 35) {
+            String hou5 = label.getString().substring(30, label.getString().length());
+            //定义一个比较date类型的大小判断值
+            int intcompareto = 0;
+            TimeParam timeParam = new TimeParam();
+            //加班规定时间
+            String nighttime = timeParam.getNightTime();
+            //将string转换为时间
+            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+            Date offdate = new Date();
+            Date nihgtdate = new Date();
+            try {
+                offdate = sdf.parse(hou5);
+                nihgtdate = sdf.parse(nighttime);
+                intcompareto = offdate.compareTo(nihgtdate);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            if (intcompareto > 0) {
+                return true;
+            }
+
+        }else if (label.getString().length() == 40) {
+            String hou5 = label.getString().substring(35, label.getString().length());
+            //定义一个比较date类型的大小判断值
+            int intcompareto = 0;
+            TimeParam timeParam = new TimeParam();
+            //加班规定时间
+            String nighttime = timeParam.getNightTime();
+            //将string转换为时间
+            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+            Date offdate = new Date();
+            Date nihgtdate = new Date();
+            try {
+                offdate = sdf.parse(hou5);
+                nihgtdate = sdf.parse(nighttime);
+                intcompareto = offdate.compareTo(nihgtdate);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            if (intcompareto > 0) {
                 return true;
             }
 
         }
+
         return false;
     }
 }
