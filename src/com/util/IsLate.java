@@ -38,15 +38,15 @@ public class IsLate {
             String ontime = timeParam.getOnTime();
             //下班规定时间
             String offtime = timeParam.getOffTime();
-            int intcompareto = 0;
-            int intcomparetotwo = 0;
+            Long intcompareto = null;
+//            Long intcomparetotwo = null;
             try {
                 date = sdf.parse(qian5);
                 nightdate = sdf.parse(hou5);
                 ondate = sdf.parse(ontime);
-                offdate = sdf.parse(offtime);
-                intcomparetotwo = nightdate.compareTo(offdate);
-                intcompareto = date.compareTo(ondate);
+//                offdate = sdf.parse(offtime);
+//                intcomparetotwo = nightdate.compareTo(offdate);
+                intcompareto = date.getTime()-ondate.getTime();
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -54,14 +54,12 @@ public class IsLate {
             //两次打卡一样显示颜色
             if (qian5 == hou5) {
                 return true;
-            } else if (((date.getTime() - nightdate.getTime() / 6000) <= 120)) {
+            } else if (((nightdate.getTime() - date.getTime() / 36000) <= 120)) {
                 return true;
                 //迟到或者忘记早上打卡 显示颜色
             } else if (intcompareto > 0) {
                 return true;
                 //判断了该打卡早上第一次打卡在8：30之前 并且第二次打卡在17：30之后
-            } else if (intcompareto < 0 || intcomparetotwo > 0) {
-                return false;
             }
 
 
@@ -95,6 +93,9 @@ public class IsLate {
             //两次打卡一样显示颜色
             if (qian5 == hou5) {
                 return true;
+            } else if (((nightdate.getTime() - date.getTime() / 36000) <= 120)) {
+                return true;
+                //迟到或者忘记早上打卡 显示颜色
             }
             //迟到或者忘记早上打卡 显示颜色
             else if (intcompareto > 0) {
@@ -135,6 +136,9 @@ public class IsLate {
             //两次打卡一样显示颜色
             if (qian5 == hou5) {
                 return true;
+            } else if (((nightdate.getTime() - date.getTime() / 36000) <= 120)) {
+                return true;
+                //迟到或者忘记早上打卡 显示颜色
             }
             //迟到或者忘记早上打卡 显示颜色
             else if (intcompareto > 0) {
@@ -175,6 +179,9 @@ public class IsLate {
             //两次打卡一样显示颜色
             if (qian5 == hou5) {
                 return true;
+            } else if (((nightdate.getTime() - date.getTime() / 36000) <= 120)) {
+                return true;
+                //迟到或者忘记早上打卡 显示颜色
             }
             //迟到或者忘记早上打卡 显示颜色
             else if (intcompareto > 0) {
@@ -214,6 +221,9 @@ public class IsLate {
             //两次打卡一样显示颜色
             if (qian5 == hou5) {
                 return true;
+            } else if (((nightdate.getTime() - date.getTime() / 36000) <= 120)) {
+                return true;
+                //迟到或者忘记早上打卡 显示颜色
             }
             //迟到或者忘记早上打卡 显示颜色
             else if (intcompareto > 0) {

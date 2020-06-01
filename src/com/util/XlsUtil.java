@@ -123,6 +123,9 @@ public class XlsUtil {
                         if( wc.getType() == CellType.LABEL){
                             Label l = (Label)wc;
                             if(isHoliday(l,date,dateList) || isWeekend(l,date,dateList) || isNight(l) || isLate(l)){
+                                if(i == 183 && j ==23){
+                                    System.out.println(isLate(l));
+                                }
                                 Label label = new Label(l.getColumn(),l.getRow(),l.getContents(),getWritableCellFormat());
                                 sheet.addCell(label);
                             }

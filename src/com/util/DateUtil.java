@@ -86,13 +86,13 @@ public class DateUtil {
             DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
             dateList = new ArrayList<ChinaDate>();
             webClient = new WebClient();
-            HtmlPage page = webClient.getPage("http://hao.360.cn/rili/");
+            HtmlPage page = webClient.getPage("https://hao.360.com/rili/");
             //最大等待60秒
             for(int k = 0; k < 60; k++){
                 if(!page.getElementById("M-dates").asText().equals("")) break;
                 Thread.sleep(1000);
             }
-            //睡了8秒，等待页面加载完成...，有时候，页面可能获取不到，不稳定（）
+            //睡了8秒，等待页面加载完成
             //Thread.sleep(8000);
 
             //选择指定年份
