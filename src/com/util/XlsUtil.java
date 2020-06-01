@@ -122,7 +122,7 @@ public class XlsUtil {
                         WritableCell wc = sheet.getWritableCell(j,i);
                         if( wc.getType() == CellType.LABEL){
                             Label l = (Label)wc;
-                            if(isHoliday(l,date,dateList) || isWeekend(l,date,dateList) || isNight(l) || isLate(l)){
+                            if(isHoliday(l,date,dateList) || isWeekend(l,date,dateList)){
                                 if(i == 183 && j ==23){
                                     System.out.println(isLate(l));
                                 }

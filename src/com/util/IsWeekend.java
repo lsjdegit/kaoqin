@@ -25,12 +25,14 @@ public class IsWeekend {
         String ontime = tp.getOnTime();
         String midtime = tp.getMidTime();
         String offtime = tp.getOffTime();
+        String nighttime = tp.getNightTime();
         SimpleDateFormat timesdf = new SimpleDateFormat("HH:mm");
         Date startDate = timesdf.parse(start);
         Date endDate = timesdf.parse(end);
         Date ontimeDate = timesdf.parse(ontime);
         Date midtimeDate = timesdf.parse(midtime);
         Date offtimeDate = timesdf.parse(offtime);
+        Date nighttimeDate = timesdf.parse(nighttime);
         if(cd.isSaturday() || cd.isSunday()){
             if(!cd.isWorkFlag()){
                 if(cd.isSaturday()){
@@ -38,6 +40,11 @@ public class IsWeekend {
                         return true;
                     }else if((endDate.getTime()-midtimeDate.getTime())<0){//星期六早退
                         return true;
+                    }else if((startDate.getTime()-ontimeDate.getTime())>0){//星期六迟到
+                        return true;
+                    } else if ((endDate.getTime() - startDate.getTime() / 60000) <= 120) {
+                        return true;
+                        //迟到或者忘记早上打卡
                     }else{
                         return false;
                     }
@@ -45,15 +52,29 @@ public class IsWeekend {
                     return true;
                 }
             }else{//周末正常上班
-                if((endDate.getTime()-offtimeDate.getTime())<0){//早退
+                if((endDate.getTime()-nighttimeDate.getTime())>=0){//加班
                     return true;
+                }else if((endDate.getTime()-offtimeDate.getTime())<0){//早退
+                    return true;
+                }else if((startDate.getTime()-ontimeDate.getTime())>0){//迟到
+                    return true;
+                } else if ((endDate.getTime() - startDate.getTime() / 60000) <= 120) {
+                    return true;
+                    //迟到或者忘记早上打卡
                 }else{
                     return false;
                 }
             }
         }else{//非周末
-            if((endDate.getTime()-offtimeDate.getTime())<0){
+            if((endDate.getTime()-nighttimeDate.getTime())>=0){//加班
                 return true;
+            }else if((endDate.getTime()-offtimeDate.getTime())<0){//早退
+                return true;
+            }else if((startDate.getTime()-ontimeDate.getTime())>0){//迟到
+                return true;
+            } else if ((endDate.getTime() - startDate.getTime() / 60000) <= 120) {
+                return true;
+                //迟到或者忘记早上打卡
             }else{
                 return false;
             }
