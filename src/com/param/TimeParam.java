@@ -1,10 +1,10 @@
 package com.param;
 
 public class TimeParam {
-    private String onTime = "8:30";
-    private String offTime = "17:30";
+    private String onTime = "9:00";
+    private String offTime = "17:00";
     private String midTime = "12:00";
-    private String nightTime="20:30";
+    private String nightTime="20:00";
 
     public String getOnTime() {
         return onTime;

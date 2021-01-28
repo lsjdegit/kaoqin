@@ -1,24 +1,41 @@
 package com.util;
 
 import com.param.TimeParam;
+import com.param.XlsParam;
 import jxl.write.Label;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class IsWeekend {
+    private TimeParam tp = new TimeParam();
+    private XlsParam xlsParam = new XlsParam();
+
+    public TimeParam getTp() {
+        return tp;
+    }
+
+    public void setTp(TimeParam tp) {
+        this.tp = tp;
+    }
 
     public boolean judge(Label label, StringBuffer date, List<ChinaDate> dateList) throws ParseException {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        StringBuffer sbym = new StringBuffer(date.substring(0,8));
-        String day = (label.getColumn()+1)>9?(label.getColumn()+1)+"":"0"+(label.getColumn()+1)+"";
+        SimpleDateFormat sdf = new SimpleDateFormat(xlsParam.getYearMonthFormat());
+        StringBuffer sbym = new StringBuffer(date.substring(xlsParam.getYearMonthBegin(),xlsParam.getYearMonthEnd()-2));
+        String day = (label.getColumn()+1-xlsParam.getDataBeginColum())>9?(label.getColumn()+1-xlsParam.getDataBeginColum())+"":"0"+(label.getColumn()+1-xlsParam.getDataBeginColum());
         sbym.append(day);
         Date ymd = sdf.parse(sbym.toString());
         ChinaDate cd = new DateUtil().getTodayInfo(dateList,ymd);
-        TimeParam tp = new TimeParam();
         String context = label.getString();
+        // 去除中文
+        Pattern pat = Pattern.compile("[\u4e00-\u9fa5]");
+        Matcher mat = pat.matcher(context);
+        context = mat.replaceAll("");
+
         int conlength = context.length();
         String start = context.substring(0,5);
         String end = context.substring(conlength-5,conlength);

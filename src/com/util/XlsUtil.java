@@ -1,9 +1,11 @@
 package com.util;
 
 import com.param.TimeParam;
+import com.param.XlsParam;
 import jxl.CellType;
 import jxl.Sheet;
 import jxl.Workbook;
+import jxl.WorkbookSettings;
 import jxl.format.UnderlineStyle;
 import jxl.read.biff.BiffException;
 import jxl.write.*;
@@ -15,7 +17,7 @@ import java.util.Date;
 import java.util.List;
 
 public class XlsUtil {
-    private TimeParam timeParam = new TimeParam();
+    private XlsParam xlsParam = new XlsParam();
 
     public String isXls(File file) {
         if(file == null){
@@ -39,7 +41,7 @@ public class XlsUtil {
             is = new FileInputStream(file.getAbsolutePath());
             // jxl提供的Workbook类
             Workbook wb = Workbook.getWorkbook(is);
-            sheet = wb.getSheet("考勤记录");
+            sheet = wb.getSheet(xlsParam.getSheetName());
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -101,13 +103,13 @@ public class XlsUtil {
             Workbook rw = Workbook.getWorkbook(file);
             WritableWorkbook wwb = Workbook.createWorkbook(file,rw);
             //这里其实执行的是一次copy操作,把文件先读到内存中,修改后再保存覆盖原来的文件来实现update操作
-            WritableSheet sheet  = wwb.getSheet("考勤记录");
+            WritableSheet sheet  = wwb.getSheet(xlsParam.getSheetName());
             //得到年月
-            StringBuffer date = new StringBuffer(sheet.getCell(2, 2).getContents());
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            StringBuffer date = new StringBuffer(sheet.getCell(xlsParam.getYearMonthColumn(), xlsParam.getYearMonthRow()).getContents());
+            SimpleDateFormat sdf = new SimpleDateFormat(xlsParam.getYearMonthFormat());
             SimpleDateFormat sdfy = new SimpleDateFormat("yyyy");
             SimpleDateFormat sdfm = new SimpleDateFormat("MM");
-            String sbdate = date.substring(0,10);
+            String sbdate = date.substring(xlsParam.getYearMonthBegin(),xlsParam.getYearMonthEnd());
             Date d = null;
             try {
                 d = sdf.parse(sbdate);
@@ -115,27 +117,30 @@ public class XlsUtil {
                 e.printStackTrace();
             }
             List<ChinaDate> dateList = new DateUtil().getCurrentDateInfo(sdfy.format(d),sdfm.format(d));
-
             for (int i = 0; i < sheet.getRows(); i++) {
-                if(i>4 && i%2!=0){
-                    for (int j = 0; j < sheet.getColumns(); j++) {
+                if(i>=xlsParam.getDataBeginRow() && xlsParam.getDataOnRow(i)){
+                    for (int j = xlsParam.getDataBeginColum(); j < sheet.getColumns(); j++) {
                         WritableCell wc = sheet.getWritableCell(j,i);
-                        if(wc.getContents() == ""){//没有打卡的空白部分
-                            SimpleDateFormat sdf01 = new SimpleDateFormat("yyyy-MM-dd");
-                            StringBuffer sbym = new StringBuffer(date.substring(0,8));
-                            String day = (wc.getColumn()+1)>9?(wc.getColumn()+1)+"":"0"+(wc.getColumn()+1)+"";
+                        String c = wc.getContents().trim();
+                        if("".equals(c) || !c.contains(":")){//没有打卡的空白部分
+                            SimpleDateFormat sdf01 = new SimpleDateFormat(xlsParam.getYearMonthFormat());
+                            StringBuffer sbym = new StringBuffer(date.substring(xlsParam.getYearMonthBegin(),xlsParam.getYearMonthEnd()-2));
+                            String day = (wc.getColumn()+1-xlsParam.getDataBeginColum())>9?(wc.getColumn()+1-xlsParam.getDataBeginColum())+"":"0"+(wc.getColumn()+1-xlsParam.getDataBeginColum());
                             sbym.append(day);
                             Date ymd = sdf01.parse(sbym.toString());
                             ChinaDate cd = new DateUtil().getTodayInfo(dateList,ymd);
                             if(!cd.isVacation() && !cd.isSunday()){//非假期，非星期天
-                                Label label = new Label(wc.getColumn(),wc.getRow(),wc.getContents(),getWritableCellFormat());
-                                sheet.addCell(label);
+                                if(sheet.getWritableCell(j,xlsParam.getDateOnRow()).getContents() != ""){
+                                    Label label = new Label(wc.getColumn(),wc.getRow(),wc.getContents(),getWritableCellFormat());
+                                    sheet.addCell(label);
+                                }
                             }else if(cd.isSunday() && cd.isWorkFlag()){//星期天上班日
-                                Label label = new Label(wc.getColumn(),wc.getRow(),wc.getContents(),getWritableCellFormat());
-                                sheet.addCell(label);
+                                if(sheet.getWritableCell(j,xlsParam.getDateOnRow()).getContents() != ""){
+                                    Label label = new Label(wc.getColumn(),wc.getRow(),wc.getContents(),getWritableCellFormat());
+                                    sheet.addCell(label);
+                                }
                             }
-                        }
-                        if( wc.getType() == CellType.LABEL){//打卡部分
+                        }else if( wc.getType() == CellType.LABEL){//打卡部分
                             Label l = (Label)wc;
                             if(isHoliday(l,date,dateList) || isWeekend(l,date,dateList)){
                                 Label label = new Label(l.getColumn(),l.getRow(),l.getContents(),getWritableCellFormat());
@@ -179,42 +184,13 @@ public class XlsUtil {
     }
 
     /**
-     * 迟到
-     * @param label
-     * @return
-     */
-    public boolean isLate(Label label){
-        IsLate isLate = new IsLate();
-        return isLate.judge(label);
-    }
-
-    /**
-     * 早退
-     * @param label
-     * @return
-     */
-    public boolean isEarly(Label label,StringBuffer date){
-        IsEarly isEarly = new IsEarly();
-        return isEarly.judge(label,date);
-    }
-
-    /**
-     * 晚班
-     * @param label
-     * @return
-     */
-    public boolean isNight(Label label){
-        IsNight isNight = new IsNight();
-        return isNight.judge(label);
-    }
-
-    /**
-     * 周末加班
+     * 周末
      * @param label
      * @return
      */
     public boolean isWeekend(Label label,StringBuffer date,List<ChinaDate> dateList){
         IsWeekend isWeekend = new IsWeekend();
+        //TimeParam timeParam = new TimeParam();
         boolean falg = false;
         try {
             falg = isWeekend.judge(label,date,dateList);

@@ -1,5 +1,6 @@
 package com.main;
 
+import com.param.XlsParam;
 import com.util.XlsUtil;
 import java.awt.Container;
 import java.awt.Point;
@@ -17,13 +18,14 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
 public class Jexample implements ActionListener {
-    JFrame frame = new JFrame("考勤记录");// 框架布局
+    XlsParam xp = new XlsParam();
+    JFrame frame = new JFrame(xp.getSheetName());// 框架布局
     JTabbedPane tabPane = new JTabbedPane();// 选项卡布局
     Container con = new Container();//
 
     JLabel label2 = new JLabel("选择文件");
-    static JTextField text1 = new JTextField();// TextField 目录的路径
-    static JTextField text2 = new JTextField();// 文件的路径
+    JTextField text1 = new JTextField();// TextField 目录的路径
+    JTextField text2 = new JTextField();// 文件的路径
     JButton button2 = new JButton("...");// 选择
     JFileChooser jfc = new JFileChooser();// 文件选择器
     JButton button3 = new JButton("确定");//
@@ -87,7 +89,7 @@ public class Jexample implements ActionListener {
             }else if(msg == "noxls"){
                 JOptionPane.showMessageDialog(null, "请选择.xls文件！", "提示", 2);
             }else if(msg == "nokq"){
-                JOptionPane.showMessageDialog(null, "文件缺少“考勤记录”页！", "提示", 2);
+                JOptionPane.showMessageDialog(null, "文件缺少“"+xp.getSheetName()+"”页！", "提示", 2);
             }else{
                 try {
                     obj.update(file);

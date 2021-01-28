@@ -14,7 +14,15 @@ import com.gargoylesoftware.htmlunit.html.HtmlPage;
 
 public class DateUtil {
 
-    private static String latestVocationName="";
+    private String latestVocationName="";
+
+    public String getLatestVocationName() {
+        return latestVocationName;
+    }
+
+    public void setLatestVocationName(String latestVocationName) {
+        this.latestVocationName = latestVocationName;
+    }
 
     public String getVocationName(DomNodeList<HtmlElement> htmlElements, String date) throws ParseException{
         String rst = "";
@@ -65,12 +73,13 @@ public class DateUtil {
             }
         }
         //if first step fail(rarely), get from the latest Vocation name
+        DateUtil dateUtil = new DateUtil();
         if(rst.equals("")){
             System.out.println("warning: fail to get vocation name from html page.");
-            rst = DateUtil.latestVocationName;
+            rst = dateUtil.getLatestVocationName();
         }else if(pastTimeFlag == true){
         //更新《当前时间，且最近一次的可见的假期名
-            DateUtil.latestVocationName = rst;
+            dateUtil.setLatestVocationName(rst);
         }
         return rst;
     }
