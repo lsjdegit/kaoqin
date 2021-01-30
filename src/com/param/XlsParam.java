@@ -22,7 +22,7 @@ public class XlsParam {
     private Integer dataBeginRow = 4;//数据开始行
     private Integer dataBeginColum = 6;//数据开始列
     private Boolean dataOnRow;//数据所在行
-    private Integer dateOnRow = 4;//日期所在行
+    private Integer dateOnRow = 3;//日期所在行
 
     public String getSheetName() {
         return sheetName;
@@ -81,8 +81,11 @@ public class XlsParam {
     }
 
     public Integer getDataBeginColum() {
-        return dataBeginColum-1;
+        return dataBeginColum;
     }
+//    public Integer getDataBeginColum() {
+//        return dataBeginColum-1;
+//    }
 
     public void setDataBeginColum(Integer dataBeginColum) {
         this.dataBeginColum = dataBeginColum;

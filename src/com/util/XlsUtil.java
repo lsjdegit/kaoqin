@@ -130,17 +130,17 @@ public class XlsUtil {
                             Date ymd = sdf01.parse(sbym.toString());
                             ChinaDate cd = new DateUtil().getTodayInfo(dateList,ymd);
                             if(!cd.isVacation() && !cd.isSunday()){//非假期，非星期天
-                                if(sheet.getWritableCell(j,xlsParam.getDateOnRow()).getContents() != ""){
+                                if(!sheet.getWritableCell(j,xlsParam.getDateOnRow()).getContents().equals("")){
                                     Label label = new Label(wc.getColumn(),wc.getRow(),wc.getContents(),getWritableCellFormat());
                                     sheet.addCell(label);
                                 }
                             }else if(cd.isSunday() && cd.isWorkFlag()){//星期天上班日
-                                if(sheet.getWritableCell(j,xlsParam.getDateOnRow()).getContents() != ""){
+                                if(!sheet.getWritableCell(j,xlsParam.getDateOnRow()).getContents().equals("")){
                                     Label label = new Label(wc.getColumn(),wc.getRow(),wc.getContents(),getWritableCellFormat());
                                     sheet.addCell(label);
                                 }
                             }
-                        }else if( wc.getType() == CellType.LABEL){//打卡部分
+                        }else if( wc.getType() == CellType.LABEL && !"".equals(wc.getContents()) && wc.getContents().contains(":")){//打卡部分
                             Label l = (Label)wc;
                             if(isHoliday(l,date,dateList) || isWeekend(l,date,dateList)){
                                 Label label = new Label(l.getColumn(),l.getRow(),l.getContents(),getWritableCellFormat());
@@ -163,24 +163,45 @@ public class XlsUtil {
 
     //单元格格式
     public WritableCellFormat getWritableCellFormat(){
-        //设置字体;
-        WritableFont font = new WritableFont(WritableFont.ARIAL,8,WritableFont.NO_BOLD,false, UnderlineStyle.NO_UNDERLINE,Colour.RED);
-        WritableCellFormat cellFormat = new WritableCellFormat(font);
+
+        //设置字体1;
+        WritableFont font1 = new WritableFont(WritableFont.ARIAL,8,WritableFont.NO_BOLD,false, UnderlineStyle.NO_UNDERLINE,Colour.RED);
+        WritableCellFormat cellFormat1 = new WritableCellFormat(font1);
         //颜色
         try {
-            cellFormat.setBackground(Colour.YELLOW);
+            cellFormat1.setBackground(Colour.YELLOW);
             //设置边框;
-            cellFormat.setBorder(Border.ALL, BorderLineStyle.THIN);
+            cellFormat1.setBorder(Border.ALL, BorderLineStyle.THIN);
             //设置自动换行;
-            cellFormat.setWrap(true);
+            cellFormat1.setWrap(true);
             //设置文字居中对齐方式;
-            cellFormat.setAlignment(Alignment.CENTRE);
+            cellFormat1.setAlignment(Alignment.CENTRE);
             //设置垂直居中;
-            cellFormat.setVerticalAlignment(VerticalAlignment.CENTRE);
+            cellFormat1.setVerticalAlignment(VerticalAlignment.CENTRE);
         } catch (WriteException e) {
             e.printStackTrace();
         }
-        return cellFormat;
+
+        //设置字体2;
+        WritableFont font2 = new WritableFont(WritableFont.createFont("黑体"),12,WritableFont.NO_BOLD,false, UnderlineStyle.NO_UNDERLINE,Colour.RED);
+        WritableCellFormat cellFormat2 = new WritableCellFormat(font2);
+        //颜色
+        try {
+            cellFormat2.setBackground(Colour.YELLOW);
+            //设置边框;
+            cellFormat2.setBorder(Border.ALL, BorderLineStyle.THIN);
+            //设置自动换行;
+            cellFormat2.setWrap(true);
+            //设置文字对齐方式;
+            cellFormat2.setAlignment(Alignment.LEFT);
+            //设置垂直居中;
+            cellFormat2.setVerticalAlignment(VerticalAlignment.TOP);
+        } catch (WriteException e) {
+            e.printStackTrace();
+        }
+
+
+        return cellFormat2;
     }
 
     /**

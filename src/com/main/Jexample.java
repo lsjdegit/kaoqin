@@ -31,14 +31,14 @@ public class Jexample implements ActionListener {
     JButton button3 = new JButton("确定");//
 
     Jexample() {
-        jfc.setCurrentDirectory(new File("c://"));// 文件选择器的初始目录定为c盘
+        jfc.setCurrentDirectory(new File("D://考勤"));// 文件选择器的初始目录定为c盘
 
         double lx = Toolkit.getDefaultToolkit().getScreenSize().getWidth();
 
         double ly = Toolkit.getDefaultToolkit().getScreenSize().getHeight();
 
         frame.setLocation(new Point((int) (lx / 2) - 150, (int) (ly / 2) - 150));// 设定窗口出现位置
-        frame.setSize(280, 200);// 设定窗口大小
+        frame.setSize(300, 200);// 设定窗口大小
         frame.setContentPane(tabPane);// 设置布局
         label2.setBounds(10, 35, 70, 20);
         text2.setBounds(75, 35, 120, 20);

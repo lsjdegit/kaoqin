@@ -50,7 +50,7 @@ public class IsWeekend {
         Date midtimeDate = timesdf.parse(midtime);
         Date offtimeDate = timesdf.parse(offtime);
         Date nighttimeDate = timesdf.parse(nighttime);
-        if(cd.isSaturday() || cd.isSunday()){
+        if(cd.isSaturday() || cd.isSunday()){//周末
             if(!cd.isWorkFlag()){
                 if(cd.isSaturday()){
                     if((endDate.getTime()-offtimeDate.getTime())>=0){//星期六加班
@@ -67,7 +67,7 @@ public class IsWeekend {
                 }else{//星期天加班
                     return true;
                 }
-            }else{//周末正常上班
+            }else{//周末正常上班日
                 if((endDate.getTime()-nighttimeDate.getTime())>=0){//加班
                     return true;
                 }else if((endDate.getTime()-offtimeDate.getTime())<0){//早退
